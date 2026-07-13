@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f4f1eb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="宜蘭生日旅" />
+  <meta name="description" content="2026/8/2–8/3 宜蘭兩天一夜生日旅行：三峽自駕、長榮鳳凰酒店一泊二食、大成羊排麵。" />
+  <title>宜蘭生日小旅行｜2026.08.02–08.03</title>
+  <style>
+    :root{
+      --bg:#f4f1eb;
+      --surface:rgba(255,255,255,.82);
+      --surface-solid:#ffffff;
+      --ink:#152f2b;
+      --muted:#71807c;
+      --green:#2e675e;
+      --green-2:#477d73;
+      --sage:#dde9e4;
+      --cream:#f7efe2;
+      --gold:#d5a151;
+      --rose:#d89388;
+      --line:rgba(25,57,52,.09);
+      --shadow:0 18px 50px rgba(25,57,52,.12);
+      --soft-shadow:0 10px 30px rgba(25,57,52,.08);
+      --radius-xl:30px;
+      --radius-lg:24px;
+      --radius-md:18px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% -10%, rgba(216,147,136,.28), transparent 30%),
+        radial-gradient(circle at 105% 14%, rgba(213,161,81,.18), transparent 28%),
+        linear-gradient(180deg,#eef4f0 0,#f7f3ed 40%,#efe9df 100%);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      padding-bottom:120px;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .app{width:min(100%,580px);margin:0 auto;position:relative}
+
+    .status-space{height:max(18px,env(safe-area-inset-top))}
+    .app-header{
+      position:sticky;top:0;z-index:50;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 18px 10px;
+      background:rgba(244,241,235,.72);
+      backdrop-filter:blur(22px) saturate(160%);
+      -webkit-backdrop-filter:blur(22px) saturate(160%);
+      border-bottom:1px solid rgba(255,255,255,.55);
+    }
+    .app-title{display:flex;align-items:center;gap:10px}
+    .app-icon{
+      width:40px;height:40px;border-radius:13px;
+      display:grid;place-items:center;
+      background:linear-gradient(145deg,#2c625a,#4a8277);
+      color:#fff;font-size:21px;box-shadow:0 8px 20px rgba(46,103,94,.22)
+    }
+    .app-title strong{display:block;font-size:16px}
+    .app-title small{display:block;color:var(--muted);font-size:11px;margin-top:1px}
+    .header-chip{
+      padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.82);
+      border:1px solid rgba(255,255,255,.9);
+      font-size:11px;font-weight:800;color:var(--green);
+      box-shadow:0 5px 14px rgba(25,57,52,.07)
+    }
+
+    .hero{padding:18px 18px 8px}
+    .hero-card{
+      position:relative;overflow:hidden;min-height:390px;
+      border-radius:34px;padding:28px;
+      background:
+        linear-gradient(160deg,rgba(18,56,49,.96),rgba(58,107,96,.92)),
+        #214e46;
+      color:#fff;box-shadow:var(--shadow)
+    }
+    .hero-card:before{
+      content:"";position:absolute;width:270px;height:270px;border-radius:50%;
+      right:-96px;top:-110px;background:rgba(255,255,255,.12)
+    }
+    .hero-card:after{
+      content:"";position:absolute;inset:auto -10% -35px;height:145px;
+      background:linear-gradient(150deg,#88aaa0,#4d756c);
+      clip-path:polygon(0 85%,14% 42%,29% 68%,49% 18%,67% 58%,83% 31%,100% 68%,100% 100%,0 100%);
+      opacity:.95
+    }
+    .hero-label{font-size:11px;font-weight:800;letter-spacing:.16em;color:#cfe1dc;position:relative;z-index:2}
+    .hero h1{font-size:43px;line-height:1.04;letter-spacing:-.045em;margin:18px 0 12px;position:relative;z-index:2}
+    .hero h1 span{color:#f3c1b8}
+    .hero p{max-width:350px;color:#dce9e5;font-size:15px;position:relative;z-index:2}
+    .hero-date{
+      margin-top:26px;display:inline-flex;align-items:center;gap:12px;
+      padding:12px 14px;border-radius:18px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(10px);position:relative;z-index:2
+    }
+    .hero-date b{font-size:20px}.hero-date small{display:block;color:#d5e4e0;font-size:11px}
+    .sun{
+      position:absolute;width:62px;height:62px;border-radius:50%;right:48px;bottom:78px;
+      background:#efbf68;box-shadow:0 0 0 16px rgba(239,191,104,.13);z-index:1
+    }
+    .road{
+      position:absolute;width:56px;height:120px;left:47%;bottom:-28px;background:#f8f0e5;
+      clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);z-index:3;opacity:.9
+    }
+
+
+    .weather-card{
+      margin:14px 18px 0;padding:18px;border-radius:27px;
+      background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(232,241,237,.82));
+      border:1px solid rgba(255,255,255,.92);box-shadow:var(--soft-shadow);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+    }
+    .weather-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .weather-head h2{font-size:22px;margin:0;letter-spacing:-.02em}
+    .weather-head small{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+    .weather-refresh{
+      border:0;border-radius:13px;padding:9px 11px;background:#e8f0ed;color:var(--green);
+      font-size:11px;font-weight:850;cursor:pointer
+    }
+    .weather-main{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:center;margin-top:16px}
+    .weather-icon{font-size:46px;line-height:1}
+    .weather-temp{font-size:38px;font-weight:900;letter-spacing:-.05em}
+    .weather-desc{font-size:13px;color:var(--muted);font-weight:750}
+    .weather-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:15px}
+    .weather-stat{padding:11px 8px;border-radius:16px;background:rgba(255,255,255,.72);text-align:center}
+    .weather-stat b{display:block;font-size:15px}.weather-stat span{font-size:9px;color:var(--muted)}
+    .trip-weather{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+    .trip-weather-title{font-size:12px;font-weight:900;margin-bottom:9px}
+    .trip-days{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .trip-day{background:rgba(255,255,255,.72);border-radius:16px;padding:12px}
+    .trip-day b{display:block;font-size:12px}.trip-day span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+    .weather-note{font-size:10px;color:var(--muted);margin-top:10px}
+    .weather-loading{padding:18px 0 4px;color:var(--muted);font-size:12px}
+
+    .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 18px 4px}
+    .quick-card{
+      background:rgba(255,255,255,.78);backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,.86);
+      border-radius:21px;padding:15px 10px;text-align:center;box-shadow:var(--soft-shadow)
+    }
+    .quick-card b{display:block;font-size:21px;margin-bottom:4px}
+    .quick-card span{font-size:11px;font-weight:800;color:var(--muted)}
+
+    .section{padding:22px 18px 0;scroll-margin-top:74px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;margin:0 2px 13px}
+    .section-head h2{margin:0;font-size:27px;letter-spacing:-.025em}
+    .section-head span{font-size:11px;color:var(--muted);font-weight:700}
+
+    .segmented{
+      position:sticky;top:65px;z-index:40;display:grid;grid-template-columns:1fr 1fr;
+      padding:5px;background:rgba(255,255,255,.72);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.85);border-radius:17px;box-shadow:var(--soft-shadow)
+    }
+    .segmented button{
+      border:0;background:transparent;padding:11px 8px;border-radius:13px;
+      font-size:13px;font-weight:850;color:var(--muted);cursor:pointer
+    }
+    .segmented button.active{background:var(--ink);color:#fff;box-shadow:0 8px 18px rgba(21,47,43,.18)}
+    .panel{display:none}.panel.active{display:block}
+
+    .timeline{position:relative;padding-left:22px;margin-top:13px}
+    .timeline:before{content:"";position:absolute;left:7px;top:14px;bottom:28px;width:2px;background:#cad8d3}
+    .event{
+      position:relative;background:var(--surface);backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.87);border-radius:25px;
+      padding:18px;margin:12px 0;box-shadow:var(--soft-shadow)
+    }
+    .event:before{
+      content:"";position:absolute;left:-22px;top:23px;width:11px;height:11px;border-radius:50%;
+      background:var(--gold);border:3px solid var(--bg);box-shadow:0 0 0 2px rgba(213,161,81,.18)
+    }
+    .event-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .time{font-size:12px;font-weight:900;letter-spacing:.04em;color:var(--green)}
+    .event h3{font-size:19px;margin:4px 0 6px;letter-spacing:-.015em}
+    .event p{font-size:13px;color:#667671;margin:0}
+    .emoji-badge{min-width:42px;height:42px;border-radius:14px;background:#eef4f1;display:grid;place-items:center;font-size:22px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+    .tag{font-size:10px;font-weight:850;padding:5px 8px;border-radius:999px;background:#edf3f0;color:#45635d}
+    .actions{display:flex;gap:8px;margin-top:13px}
+    .btn{
+      flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+      padding:11px 10px;border-radius:14px;background:var(--ink);color:#fff;
+      font-size:12px;font-weight:850;box-shadow:0 8px 16px rgba(21,47,43,.14)
+    }
+    .btn.secondary{background:#eef3f0;color:var(--ink);box-shadow:none}
+    .btn.gold{background:#d4a050}
+    .notice{margin-top:12px;padding:12px 13px;border-radius:15px;background:#fff2d9;border:1px solid #f0d39d;font-size:12px;color:#71521f}
+
+    .cafe-list{display:grid;gap:10px;margin-top:14px}
+    .cafe-card{
+      display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;
+      background:#fff;border-radius:18px;padding:12px;border:1px solid var(--line);
+      box-shadow:0 7px 20px rgba(25,57,52,.06)
+    }
+    .cafe-icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:25px;background:linear-gradient(145deg,#efe5d7,#f8f4ee)}
+    .cafe-card b{display:block;font-size:14px}
+    .cafe-card small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+    .nav-mini{padding:9px 11px;border-radius:12px;background:var(--ink);color:#fff;font-size:11px;font-weight:850}
+
+    .hotel-card{
+      position:relative;overflow:hidden;border-radius:31px;padding:24px;
+      background:linear-gradient(150deg,#173f38,#376d63);color:#fff;box-shadow:var(--shadow)
+    }
+    .hotel-card:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-70px;top:-65px;background:rgba(255,255,255,.09)}
+    .hotel-card small{color:#c9ddd7;letter-spacing:.09em;font-weight:800}
+    .hotel-card h3{font-size:26px;margin:8px 0 7px}
+    .hotel-card p{font-size:13px;color:#d7e6e2;max-width:410px}
+    .facility-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}
+    .facility{padding:14px;border-radius:18px;background:rgba(255,255,255,.105);border:1px solid rgba(255,255,255,.12);min-height:110px}
+    .facility i{font-style:normal;font-size:23px}.facility b{display:block;font-size:13px;margin:5px 0 3px}.facility span{font-size:10px;color:#c9dcd7}
+    .plan-card,.backup-card,.check-card{
+      background:var(--surface);backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,.86);border-radius:25px;padding:19px;box-shadow:var(--soft-shadow)
+    }
+    .plan-card{margin-top:13px}
+    .plan-row{display:grid;grid-template-columns:58px 1fr;gap:11px;padding:11px 0;border-bottom:1px dashed #d8e0dc;font-size:13px}
+    .plan-row:last-child{border:0}.plan-row strong{color:var(--green)}
+    .backup-card h3,.check-card h3{margin:0 0 7px;font-size:19px}
+    .backup-card p{font-size:13px;color:#667671;margin:0}
+
+    .checklist{display:grid;gap:8px;margin-top:12px}
+    .check{
+      display:flex;align-items:center;gap:11px;padding:12px 13px;border-radius:15px;
+      background:rgba(255,255,255,.72);border:1px solid rgba(25,57,52,.07);font-size:13px
+    }
+    .check input{width:19px;height:19px;accent-color:var(--green)}
+    .footer{padding:26px 26px 0;text-align:center;color:#7b8884;font-size:11px}
+
+    .tabbar{
+      position:fixed;z-index:100;left:50%;transform:translateX(-50%);
+      bottom:max(10px,env(safe-area-inset-bottom));width:min(calc(100% - 20px),560px);
+      display:grid;grid-template-columns:repeat(4,1fr);padding:7px;
+      border-radius:24px;background:rgba(250,249,246,.82);
+      backdrop-filter:blur(24px) saturate(165%);
+      -webkit-backdrop-filter:blur(24px) saturate(165%);
+      border:1px solid rgba(255,255,255,.9);box-shadow:0 16px 42px rgba(21,47,43,.22)
+    }
+    .tabbar a{display:grid;place-items:center;gap:2px;padding:7px 4px;border-radius:17px;color:#74817d;font-size:10px;font-weight:750}
+    .tabbar a.active{background:#e8f0ed;color:var(--green)}
+    .tabbar b{font-size:18px;line-height:1}
+
+    @media(min-width:700px){
+      body{padding-top:20px}
+      .app{border-radius:38px;overflow:hidden;box-shadow:0 30px 90px rgba(25,57,52,.18)}
+      .app-header{top:0}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="status-space"></div>
+
+  <header class="app-header">
+    <div class="app-title">
+      <div class="app-icon">♨️</div>
+      <div><strong>宜蘭生日旅</strong><small>2026.08.02 — 08.03</small></div>
+    </div>
+    <div class="header-chip">2 天 1 夜</div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-card">
+      <div class="hero-label">YILAN BIRTHDAY ESCAPE</div>
+      <h1>把日子過得<br><span>慢一點</span></h1>
+      <p>從三峽開往宜蘭，留一段給山海、溫泉、好吃的食物與兩個人的生日假期。</p>
+      <div class="hero-date">
+        <div>📅</div>
+        <div><b>08.02 — 08.03</b><small>星期日 → 星期一</small></div>
+      </div>
+      <div class="sun"></div><div class="road"></div>
+    </div>
+  </section>
+
+
+  <section class="weather-card" id="weather">
+    <div class="weather-head">
+      <div><h2>宜蘭即時天氣</h2><small id="weatherUpdated">正在取得最新資料</small></div>
+      <button class="weather-refresh" id="weatherRefresh">重新整理</button>
+    </div>
+    <div id="weatherContent" class="weather-loading">正在載入溫度與降雨機率…</div>
+  </section>
+
+  <section class="quick-grid">
+    <div class="quick-card"><b>🚗</b><span>三峽自駕</span></div>
+    <div class="quick-card"><b>🏨</b><span>長榮鳳凰</span></div>
+    <div class="quick-card"><b>🍜</b><span>大成羊排麵</span></div>
+    <div class="quick-card"><b>🎂</b><span>生日慶生</span></div>
+  </section>
+
+  <section class="section" id="schedule">
+    <div class="section-head"><h2>行程</h2><span>左右切換日期</span></div>
+    <div class="segmented">
+      <button class="day-tab active" data-target="day1">DAY 1 · 8/2 日</button>
+      <button class="day-tab" data-target="day2">DAY 2 · 8/3 一</button>
+    </div>
+
+    <div class="panel active" id="day1">
+      <div class="timeline">
+        <article class="event">
+          <div class="event-top"><div><div class="time">08:00</div><h3>三峽出發</h3></div><div class="emoji-badge">🚗</div></div>
+          <p>走國道 3 號接國道 5 號，預留雪隧車流與中途休息時間。</p>
+          <div class="tags"><span class="tag">約 1.5–2 小時</span><span class="tag">自駕</span></div>
+          <div class="actions"><a class="btn" href="https://www.google.com/maps/dir/?api=1&origin=Sanxia+District&destination=Meihua+Lake+Yilan&travelmode=driving">地圖導航</a></div>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">10:00–11:20</div><h3>梅花湖散步</h3></div><div class="emoji-badge">🌿</div></div>
+          <p>湖畔散步、拍照或租腳踏車。八月天氣炎熱，建議保留體力。</p>
+          <div class="actions"><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=梅花湖風景區">查看位置</a></div>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">12:00–13:10</div><h3>第一天午餐</h3></div><div class="emoji-badge">🍽️</div></div>
+          <p>挑一間宜蘭在地小吃即可，份量不要太多，保留胃口給晚上的飯店自助餐。</p>
+          <div class="cafe-list">
+            <div class="cafe-card">
+              <div class="cafe-icon">🥟</div>
+              <div><b>正好鮮肉小籠包・宜蘭總店</b><small>皮薄多汁・星期日可安排・熱門時段可能排隊</small></div>
+              <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=正好鮮肉小籠包宜蘭總店">導航</a>
+            </div>
+            <div class="cafe-card">
+              <div class="cafe-icon">🍜</div>
+              <div><b>文昌炸醬麵</b><small>在地古早味・炸醬麵與排骨酥湯</small></div>
+              <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=宜蘭文昌炸醬麵文昌路37號">導航</a>
+            </div>
+            <div class="cafe-card">
+              <div class="cafe-icon">🍲</div>
+              <div><b>阿添魚丸米粉</b><small>百年巷弄小吃・建議中午前抵達以免售完</small></div>
+              <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=阿添魚丸米粉宜蘭">導航</a>
+            </div>
+          </div>
+          <div class="notice">店家可能提早售完或臨時調整營業時間，出發前建議再次確認。</div>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">13:40–14:40</div><h3>景觀咖啡</h3></div><div class="emoji-badge">☕</div></div>
+          <p>依當天路線與心情挑一間，喝杯咖啡後再前往礁溪入住。</p>
+
+          <div class="cafe-list">
+            <div class="cafe-card">
+              <div class="cafe-icon">🌊</div>
+              <div><b>滿山望海</b><small>頭城海景・適合拍照</small></div>
+              <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=滿山望海">導航</a>
+            </div>
+            <div class="cafe-card">
+              <div class="cafe-icon">🏠</div>
+              <div><b>黑宅咖啡</b><small>文青建築・安靜好拍</small></div>
+              <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=黑宅咖啡">導航</a>
+            </div>
+            <div class="cafe-card">
+              <div class="cafe-icon">🏖️</div>
+              <div><b>No.9 Cafe at the Beach</b><small>外澳看海・停車方便</small></div>
+              <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=No.9+Cafe+at+the+Beach">導航</a>
+            </div>
+            <div class="cafe-card">
+              <div class="cafe-icon">⛰️</div>
+              <div><b>佛光大學雲起咖啡</b><small>山景與蘭陽平原</small></div>
+              <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=佛光大學雲起咖啡">導航</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">15:00</div><h3>入住長榮鳳凰</h3></div><div class="emoji-badge">🏨</div></div>
+          <p>完成 Check-in 後換泳裝，開始享受溫泉水療、泳池與房內泡湯。</p>
+          <div class="actions"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=長榮鳳凰酒店礁溪">飯店導航</a></div>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">17:30–19:30</div><h3>一泊二食晚餐</h3></div><div class="emoji-badge">🥂</div></div>
+          <p>依訂房方案指定餐期用餐，實際時間以飯店通知為準。</p>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">20:00 之後</div><h3>泡湯與飯店夜晚</h3></div><div class="emoji-badge">🌙</div></div>
+          <p>露天風呂、礁溪散步或回房泡湯，依當晚心情自由安排。</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="panel" id="day2">
+      <div class="timeline">
+        <article class="event">
+          <div class="event-top"><div><div class="time">08:00–09:30</div><h3>飯店早餐</h3></div><div class="emoji-badge">🍳</div></div>
+          <p>睡飽後悠閒吃早餐，不需要為了跑景點提早離開飯店。</p>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">09:30–10:50</div><h3>最後一輪飯店設施</h3></div><div class="emoji-badge">♨️</div></div>
+          <p>補玩前一天沒使用到的設施，或留在房內泡湯與整理行李。</p>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">11:00</div><h3>Check-out</h3></div><div class="emoji-badge">🧳</div></div>
+          <p>實際退房時間請以訂單與飯店現場公告為準。</p>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">11:20–12:10</div><h3>橘之鄉蜜餞形象館</h3></div><div class="emoji-badge">🍊</div></div>
+          <p>免費入園，可試吃金棗蜜餞、喝金棗茶、拍照與選購伴手禮。室內外皆有空間，晴雨天都適合。</p>
+          <div class="tags"><span class="tag">08:30–17:30</span><span class="tag">星期一開放</span><span class="tag">順路往宜蘭市</span></div>
+          <div class="actions">
+            <a class="btn secondary" href="https://www.agrioz.com.tw/">官方網站</a>
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=橘之鄉蜜餞形象館">地圖導航</a>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">12:30–13:40</div><h3>大成羊排麵</h3></div><div class="emoji-badge">🍜</div></div>
+          <p>星期一午餐安排招牌羊排麵與杏仁豆腐花生湯。地址：宜蘭市新民路 31 號。</p>
+          <div class="tags"><span class="tag">星期日公休</span><span class="tag">生日午餐</span></div>
+          <div class="actions">
+            <a class="btn gold" href="tel:039369007">撥打電話</a>
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=大成羊排麵+宜蘭市新民路31號">地圖導航</a>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">14:00–14:50</div><h3>伴手禮／短暫休息</h3></div><div class="emoji-badge">🛍️</div></div>
+          <p>奕順軒、諾貝爾奶凍或宜蘭特色伴手禮，依回程路線挑一間即可。</p>
+        </article>
+
+        <article class="event">
+          <div class="event-top"><div><div class="time">15:00</div><h3>返回三峽</h3></div><div class="emoji-badge">🏠</div></div>
+          <p>星期一下午回程相對輕鬆，仍建議查看國道 5 號即時路況。</p>
+          <div class="actions"><a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=Sanxia+District&travelmode=driving">回家導航</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hotel">
+    <div class="section-head"><h2>飯店</h2><span>入住後的主場</span></div>
+    <div class="hotel-card">
+      <small>EVERGREEN RESORT HOTEL · JIAOSI</small>
+      <h3>長榮鳳凰酒店</h3>
+      <p>這趟旅行不需要把景點塞滿。下午三點後，把時間留給溫泉、水療、美食與房間本身。</p>
+      <div class="facility-grid">
+        <div class="facility"><i>♨️</i><b>溫泉水療</b><span>按摩池、浮浴池等</span></div>
+        <div class="facility"><i>🏊</i><b>溫泉泳池</b><span>建議攜帶泳裝泳帽</span></div>
+        <div class="facility"><i>🌙</i><b>露天風呂</b><span>晚上最有度假氣氛</span></div>
+        <div class="facility"><i>🎮</i><b>娛樂空間</b><span>依現場開放項目使用</span></div>
+        <div class="facility"><i>🏋️</i><b>健身空間</b><span>簡單活動身體</span></div>
+        <div class="facility"><i>🛁</i><b>房內泡湯</b><span>最安靜舒適</span></div>
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-row"><strong>15:00</strong><span>入住、放行李、熟悉房間</span></div>
+      <div class="plan-row"><strong>15:30</strong><span>溫泉 SPA／泳池 60–90 分鐘</span></div>
+      <div class="plan-row"><strong>17:00</strong><span>回房沖洗、更衣與休息</span></div>
+      <div class="plan-row"><strong>17:30</strong><span>享用一泊二食晚餐</span></div>
+      <div class="plan-row"><strong>20:00</strong><span>露天風呂或礁溪散步</span></div>
+      <div class="plan-row"><strong>21:30</strong><span>回房泡湯、放鬆休息</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="backup">
+    <div class="section-head"><h2>雨天備案</h2><span>行程自動降速</span></div>
+    <div class="backup-card">
+      <h3>下雨就把旅行變得更慢</h3>
+      <p>取消梅花湖並提早到礁溪、延長飯店設施時間；第二天的橘之鄉本身即可作為雨天行程。</p>
+      <div class="tags"><span class="tag">提早入住</span><span class="tag">多泡一次湯</span><span class="tag">室內咖啡</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="checklist">
+    <div class="section-head"><h2>出發前</h2><span>勾選會自動保存</span></div>
+    <div class="check-card">
+      <h3>準備清單</h3>
+      <div class="checklist">
+        <label class="check"><input type="checkbox"> 確認飯店晚餐餐期與退房時間</label>
+        <label class="check"><input type="checkbox"> 泳裝、泳帽、拖鞋、防曬用品</label>
+        <label class="check"><input type="checkbox"> 查看宜蘭天氣與國道 5 號路況</label>
+      </div>
+    </div>
+  </section>
+
+  <p class="footer">營業時間、餐期、設施開放與步道路況，請以店家及官方最新公告為準。</p>
+</div>
+
+<nav class="tabbar">
+  <a href="#home" class="active"><b>⌂</b>首頁</a>
+  <a href="#schedule"><b>◷</b>行程</a>
+  <a href="#hotel"><b>♨</b>飯店</a>
+  <a href="#checklist"><b>✓</b>清單</a>
+</nav>
+
+<script>
+  const tabs = document.querySelectorAll('.day-tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.target).classList.add('active');
+    });
+  });
+
+  const checks = [...document.querySelectorAll('.check input')];
+  checks.forEach((box, index) => {
+    const key = 'yilan-app-check-' + index;
+    box.checked = localStorage.getItem(key) === '1';
+    box.addEventListener('change', () => {
+      localStorage.setItem(key, box.checked ? '1' : '0');
+    });
+  });
+
+  const navItems = document.querySelectorAll('.tabbar a');
+  const sections = ['home','schedule','hotel','checklist'].map(id => document.getElementById(id));
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        navItems.forEach(a => a.classList.remove('active'));
+        const match = [...navItems].find(a => a.getAttribute('href') === '#' + entry.target.id);
+        if(match) match.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-40% 0px -50% 0px', threshold:0});
+  sections.forEach(section => observer.observe(section));
+
+  const weatherCodeMap = {
+    0:['☀️','晴朗'],1:['🌤️','大致晴朗'],2:['⛅','局部多雲'],3:['☁️','陰天'],
+    45:['🌫️','有霧'],48:['🌫️','霧淞'],51:['🌦️','毛毛雨'],53:['🌦️','毛毛雨'],
+    55:['🌧️','較強毛毛雨'],56:['🌧️','凍毛毛雨'],57:['🌧️','強凍毛毛雨'],
+    61:['🌧️','小雨'],63:['🌧️','中雨'],65:['🌧️','大雨'],66:['🌧️','凍雨'],
+    67:['🌧️','強凍雨'],71:['🌨️','小雪'],73:['🌨️','中雪'],75:['❄️','大雪'],
+    77:['🌨️','霰'],80:['🌦️','短暫陣雨'],81:['🌧️','陣雨'],82:['⛈️','強陣雨'],
+    85:['🌨️','陣雪'],86:['❄️','強陣雪'],95:['⛈️','雷雨'],96:['⛈️','雷雨伴冰雹'],99:['⛈️','強雷雨伴冰雹']
+  };
+
+  function fmtDateTime(iso){
+    const d = new Date(iso);
+    return new Intl.DateTimeFormat('zh-TW',{
+      month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false
+    }).format(d);
+  }
+
+  async function loadWeather(){
+    const box = document.getElementById('weatherContent');
+    const updated = document.getElementById('weatherUpdated');
+    box.className = 'weather-loading';
+    box.textContent = '正在載入溫度與降雨機率…';
+
+    try{
+      const url = 'https://api.open-meteo.com/v1/forecast?latitude=24.757&longitude=121.753&current=temperature_2m,apparent_temperature,weather_code,relative_humidity_2m,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTaipei&forecast_days=16';
+      const res = await fetch(url);
+      if(!res.ok) throw new Error('weather fetch failed');
+      const data = await res.json();
+
+      const current = data.current;
+      const daily = data.daily;
+      const todayCode = weatherCodeMap[current.weather_code] || ['🌤️','天氣變化'];
+      const todayRain = daily.precipitation_probability_max[0] ?? '--';
+      const tripDates = ['2026-08-02','2026-08-03'];
+      const tripLabels = ['8/2 星期日','8/3 星期一'];
+      let tripHtml = '';
+
+      const tripRows = tripDates.map((date, idx) => {
+        const i = daily.time.indexOf(date);
+        if(i === -1) return null;
+        const code = weatherCodeMap[daily.weather_code[i]] || ['🌤️','天氣變化'];
+        return `<div class="trip-day"><b>${tripLabels[idx]} ${code[0]}</b><span>${code[1]}｜${Math.round(daily.temperature_2m_min[i])}–${Math.round(daily.temperature_2m_max[i])}°C</span><span>降雨機率 ${daily.precipitation_probability_max[i] ?? '--'}%</span></div>`;
+      });
+
+      if(tripRows.every(Boolean)){
+        tripHtml = `<div class="trip-weather"><div class="trip-weather-title">旅行日期預報</div><div class="trip-days">${tripRows.join('')}</div></div>`;
+      }else{
+        tripHtml = `<div class="trip-weather"><div class="trip-weather-title">旅行日期預報</div><div class="weather-note">8/2–8/3 尚未進入可靠的短期預報範圍。接近出發日時，本區會自動顯示兩天的最高／最低溫與降雨機率。</div></div>`;
+      }
+
+      box.className = '';
+      box.innerHTML = `
+        <div class="weather-main">
+          <div class="weather-icon">${todayCode[0]}</div>
+          <div><div class="weather-temp">${Math.round(current.temperature_2m)}°</div><div class="weather-desc">${todayCode[1]}・體感 ${Math.round(current.apparent_temperature)}°C</div></div>
+        </div>
+        <div class="weather-stats">
+          <div class="weather-stat"><b>${todayRain}%</b><span>今日降雨機率</span></div>
+          <div class="weather-stat"><b>${current.relative_humidity_2m}%</b><span>相對濕度</span></div>
+          <div class="weather-stat"><b>${Math.round(current.wind_speed_10m)} km/h</b><span>風速</span></div>
+        </div>
+        ${tripHtml}
+        <div class="weather-note">資料來源：Open-Meteo。實際天氣仍可能快速變化，出發前請再次確認。</div>
+      `;
+      updated.textContent = `更新於 ${fmtDateTime(current.time)}`;
+    }catch(err){
+      box.className = 'weather-loading';
+      box.innerHTML = '暫時無法取得天氣資料。請確認網路連線後再按「重新整理」。';
+      updated.textContent = '連線失敗';
+    }
+  }
+
+  document.getElementById('weatherRefresh').addEventListener('click', loadWeather);
+  loadWeather();
+
+</script>
+</body>
+</html>
