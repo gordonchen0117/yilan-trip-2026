@@ -563,7 +563,7 @@
           <button id="refreshSheetExpenses" type="button">同步帳本</button>
           <button id="toggleSheetGuide" type="button">設定範本</button>
         </div>
-        <div class="expense-sync-note">目前指定試算表：1HG_Un20y89T7fKkQtRGlo42YVmSLsgycKZ1zfRqLvWI。貼上 Apps Script 網頁應用程式網址後，豬蹄和馬蹄就會看到同一份記帳。</div>
+        <div class="expense-sync-note">已設定共用帳本。豬蹄和馬蹄使用同一個旅遊網頁，就會看到同一份記帳。</div>
         <pre class="expense-sync-code" id="sheetGuide"></pre>
       </div>
 
@@ -698,6 +698,7 @@
   const sheetGuide = document.getElementById('sheetGuide');
   const expenseKey = 'yilan-trip-expenses-v1';
   const sheetEndpointKey = 'yilan-trip-sheet-endpoint-v1';
+  const defaultSheetEndpoint = 'https://script.google.com/macros/s/AKfycbzBJZ7qlvEPNeWISU4tnZDp-unHT3iIbkfJkF1CCxNXfZimyeJgZPgbB7veNRjGtQuN/exec';
   const sheetJsonpName = 'yilanExpenseJsonp';
   let expenseCache = [];
 
@@ -736,9 +737,9 @@
 
   function getSheetEndpoint(){
     try{
-      return localStorage.getItem(sheetEndpointKey) || '';
+      return localStorage.getItem(sheetEndpointKey) || defaultSheetEndpoint;
     }catch(err){
-      return '';
+      return defaultSheetEndpoint;
     }
   }
 
