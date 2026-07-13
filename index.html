@@ -134,7 +134,7 @@
     .weather-icon{font-size:46px;line-height:1}
     .weather-temp{font-size:38px;font-weight:900;letter-spacing:-.05em}
     .weather-desc{font-size:13px;color:var(--muted);font-weight:750}
-    .weather-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:15px}
+    .weather-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}
     .weather-stat{padding:11px 8px;border-radius:16px;background:rgba(255,255,255,.72);text-align:center}
     .weather-stat b{display:block;font-size:15px}.weather-stat span{font-size:9px;color:var(--muted)}
     .trip-weather{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
@@ -222,7 +222,7 @@
     .facility-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}
     .facility{padding:14px;border-radius:18px;background:rgba(255,255,255,.105);border:1px solid rgba(255,255,255,.12);min-height:110px}
     .facility i{font-style:normal;font-size:23px}.facility b{display:block;font-size:13px;margin:5px 0 3px}.facility span{font-size:10px;color:#c9dcd7}
-    .plan-card,.backup-card,.check-card{
+    .plan-card,.backup-card,.check-card,.expense-card{
       background:var(--surface);backdrop-filter:blur(16px);
       border:1px solid rgba(255,255,255,.86);border-radius:25px;padding:19px;box-shadow:var(--soft-shadow)
     }
@@ -238,12 +238,70 @@
       background:rgba(255,255,255,.72);border:1px solid rgba(25,57,52,.07);font-size:13px
     }
     .check input{width:19px;height:19px;accent-color:var(--green)}
+    .expense-form{display:grid;gap:10px}
+    .expense-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+    .expense-field{display:grid;gap:5px}
+    .expense-field label{font-size:10px;font-weight:900;color:var(--muted)}
+    .expense-field input,.expense-field select{
+      width:100%;border:1px solid rgba(25,57,52,.1);border-radius:14px;
+      background:rgba(255,255,255,.78);padding:12px 12px;color:var(--ink);
+      font:inherit;font-size:13px;outline:none
+    }
+    .expense-field input:focus,.expense-field select:focus{border-color:rgba(46,103,94,.45);box-shadow:0 0 0 3px rgba(46,103,94,.09)}
+    .expense-add{
+      border:0;border-radius:15px;background:var(--ink);color:#fff;
+      padding:13px 14px;font-size:13px;font-weight:900;box-shadow:0 9px 18px rgba(21,47,43,.16);cursor:pointer
+    }
+    .expense-summary{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:15px 0 11px}
+    .expense-total,.expense-split{
+      border-radius:18px;padding:14px;background:rgba(255,255,255,.74);
+      border:1px solid rgba(25,57,52,.07)
+    }
+    .expense-total span,.expense-split span{display:block;font-size:10px;color:var(--muted);font-weight:850}
+    .expense-total b,.expense-split b{display:block;font-size:22px;letter-spacing:-.03em;margin-top:2px}
+    .expense-breakdown{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+    .expense-pill{font-size:10px;font-weight:850;padding:6px 9px;border-radius:999px;background:#edf3f0;color:#45635d}
+    .expense-list{display:grid;gap:8px}
+    .expense-empty{padding:13px;border-radius:15px;background:rgba(255,255,255,.66);color:var(--muted);font-size:12px;text-align:center}
+    .expense-item{
+      display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;
+      padding:12px 12px;border-radius:16px;background:rgba(255,255,255,.76);
+      border:1px solid rgba(25,57,52,.07)
+    }
+    .expense-item h3{margin:0;font-size:14px}
+    .expense-item small{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+    .expense-amount{text-align:right}
+    .expense-amount b{display:block;font-size:15px}
+    .expense-delete{border:0;background:#f3e5df;color:#9a4e43;border-radius:11px;padding:6px 8px;font-size:10px;font-weight:900;margin-top:5px;cursor:pointer}
+    .expense-sync{
+      margin-bottom:13px;padding:13px;border-radius:17px;background:rgba(237,243,240,.78);
+      border:1px solid rgba(25,57,52,.07)
+    }
+    .expense-sync-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:9px}
+    .expense-sync-title b{font-size:13px}.expense-sync-title span{font-size:10px;color:var(--muted);font-weight:850}
+    .expense-sync-form{display:grid;grid-template-columns:1fr auto;gap:8px}
+    .expense-sync-form input{
+      min-width:0;border:1px solid rgba(25,57,52,.1);border-radius:13px;background:rgba(255,255,255,.82);
+      padding:10px 11px;color:var(--ink);font:inherit;font-size:12px;outline:none
+    }
+    .expense-sync-form button,.expense-sync-actions button{
+      border:0;border-radius:13px;background:var(--green);color:#fff;padding:10px 12px;
+      font-size:11px;font-weight:900;cursor:pointer
+    }
+    .expense-sync-actions{display:flex;gap:8px;margin-top:8px}
+    .expense-sync-actions button{flex:1;background:#e8f0ed;color:var(--green)}
+    .expense-sync-note{font-size:10px;color:var(--muted);margin-top:8px}
+    .expense-sync-code{
+      display:none;margin-top:10px;white-space:pre-wrap;overflow:auto;max-height:230px;
+      padding:12px;border-radius:14px;background:#173f38;color:#eef8f4;font-size:10px;line-height:1.5
+    }
+    .expense-sync-code.show{display:block}
     .footer{padding:26px 26px 0;text-align:center;color:#7b8884;font-size:11px}
 
     .tabbar{
       position:fixed;z-index:100;left:50%;transform:translateX(-50%);
       bottom:max(10px,env(safe-area-inset-bottom));width:min(calc(100% - 20px),560px);
-      display:grid;grid-template-columns:repeat(4,1fr);padding:7px;
+      display:grid;grid-template-columns:repeat(5,1fr);padding:7px;
       border-radius:24px;background:rgba(250,249,246,.82);
       backdrop-filter:blur(24px) saturate(165%);
       -webkit-backdrop-filter:blur(24px) saturate(165%);
@@ -257,6 +315,10 @@
       body{padding-top:20px}
       .app{border-radius:38px;overflow:hidden;box-shadow:0 30px 90px rgba(25,57,52,.18)}
       .app-header{top:0}
+    }
+    @media(max-width:390px){
+      .expense-row,.expense-summary{grid-template-columns:1fr}
+      .expense-sync-form{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -488,6 +550,66 @@
     </div>
   </section>
 
+  <section class="section" id="expenses">
+    <div class="section-head"><h2>記帳</h2><span id="expenseSyncLabel">本機保存</span></div>
+    <div class="expense-card">
+      <div class="expense-sync">
+        <div class="expense-sync-title"><b>Google Sheet 同步</b><span id="expenseSyncStatus">尚未連線</span></div>
+        <div class="expense-sync-form">
+          <input id="sheetEndpoint" type="url" placeholder="貼上 Google Apps Script 網址">
+          <button id="saveSheetEndpoint" type="button">儲存</button>
+        </div>
+        <div class="expense-sync-actions">
+          <button id="refreshSheetExpenses" type="button">同步帳本</button>
+          <button id="toggleSheetGuide" type="button">設定範本</button>
+        </div>
+        <div class="expense-sync-note">目前指定試算表：1HG_Un20y89T7fKkQtRGlo42YVmSLsgycKZ1zfRqLvWI。貼上 Apps Script 網頁應用程式網址後，豬蹄和馬蹄就會看到同一份記帳。</div>
+        <pre class="expense-sync-code" id="sheetGuide"></pre>
+      </div>
+
+      <form class="expense-form" id="expenseForm">
+        <div class="expense-row">
+          <div class="expense-field">
+            <label for="expenseName">項目</label>
+            <input id="expenseName" type="text" placeholder="晚餐、停車、伴手禮" autocomplete="off" required>
+          </div>
+          <div class="expense-field">
+            <label for="expenseAmount">金額</label>
+            <input id="expenseAmount" type="number" min="1" step="1" inputmode="numeric" placeholder="350" required>
+          </div>
+        </div>
+        <div class="expense-row">
+          <div class="expense-field">
+            <label for="expenseCategory">分類</label>
+            <select id="expenseCategory">
+              <option>餐飲</option>
+              <option>交通</option>
+              <option>住宿</option>
+              <option>門票</option>
+              <option>伴手禮</option>
+              <option>其他</option>
+            </select>
+          </div>
+          <div class="expense-field">
+            <label for="expensePayer">付款</label>
+            <select id="expensePayer">
+              <option>豬蹄</option>
+              <option>馬蹄</option>
+            </select>
+          </div>
+        </div>
+        <button class="expense-add" type="submit">新增支出</button>
+      </form>
+
+      <div class="expense-summary">
+        <div class="expense-total"><span>目前總支出</span><b id="expenseTotal">$0</b></div>
+        <div class="expense-split"><span>兩人平均</span><b id="expenseAverage">$0</b></div>
+      </div>
+      <div class="expense-breakdown" id="expenseBreakdown"></div>
+      <div class="expense-list" id="expenseList"></div>
+    </div>
+  </section>
+
   <section class="section" id="checklist">
     <div class="section-head"><h2>出發前</h2><span>勾選會自動保存</span></div>
     <div class="check-card">
@@ -496,6 +618,16 @@
         <label class="check"><input type="checkbox"> 確認飯店晚餐餐期與退房時間</label>
         <label class="check"><input type="checkbox"> 泳裝、泳帽、拖鞋、防曬用品</label>
         <label class="check"><input type="checkbox"> 查看宜蘭天氣與國道 5 號路況</label>
+        <label class="check"><input type="checkbox"> 身分證、健保卡、駕照與信用卡</label>
+        <label class="check"><input type="checkbox"> 手機、行動電源、充電線與車充</label>
+        <label class="check"><input type="checkbox"> 確認車況、油量、胎壓與 ETC 餘額</label>
+        <label class="check"><input type="checkbox"> 預先查好停車場與替代停車點</label>
+        <label class="check"><input type="checkbox"> 常備藥、暈車藥、腸胃藥與 OK 繃</label>
+        <label class="check"><input type="checkbox"> 雨傘、薄外套、換洗衣物與睡衣</label>
+        <label class="check"><input type="checkbox"> 盥洗用品、保養品、隱形眼鏡用品</label>
+        <label class="check"><input type="checkbox"> 確認餐廳營業時間、訂位與公休日</label>
+        <label class="check"><input type="checkbox"> 準備現金零錢，方便停車、小吃與伴手禮</label>
+        <label class="check"><input type="checkbox"> 出門前確認門窗、瓦斯、電器與垃圾</label>
       </div>
     </div>
   </section>
@@ -507,6 +639,7 @@
   <a href="#home" class="active"><b>⌂</b>首頁</a>
   <a href="#schedule"><b>◷</b>行程</a>
   <a href="#hotel"><b>♨</b>飯店</a>
+  <a href="#expenses"><b>$</b>記帳</a>
   <a href="#checklist"><b>✓</b>清單</a>
 </nav>
 
@@ -523,16 +656,297 @@
   });
 
   const checks = [...document.querySelectorAll('.check input')];
+  function readCheck(key){
+    try{
+      return localStorage.getItem(key) === '1';
+    }catch(err){
+      return false;
+    }
+  }
+
+  function saveCheck(key, checked){
+    try{
+      localStorage.setItem(key, checked ? '1' : '0');
+    }catch(err){
+      // The checklist remains usable when storage is blocked by the browser.
+    }
+  }
+
   checks.forEach((box, index) => {
     const key = 'yilan-app-check-' + index;
-    box.checked = localStorage.getItem(key) === '1';
+    box.checked = readCheck(key);
     box.addEventListener('change', () => {
-      localStorage.setItem(key, box.checked ? '1' : '0');
+      saveCheck(key, box.checked);
     });
   });
 
+  const expenseForm = document.getElementById('expenseForm');
+  const expenseName = document.getElementById('expenseName');
+  const expenseAmount = document.getElementById('expenseAmount');
+  const expenseCategory = document.getElementById('expenseCategory');
+  const expensePayer = document.getElementById('expensePayer');
+  const expenseTotal = document.getElementById('expenseTotal');
+  const expenseAverage = document.getElementById('expenseAverage');
+  const expenseBreakdown = document.getElementById('expenseBreakdown');
+  const expenseList = document.getElementById('expenseList');
+  const expenseSyncLabel = document.getElementById('expenseSyncLabel');
+  const expenseSyncStatus = document.getElementById('expenseSyncStatus');
+  const sheetEndpoint = document.getElementById('sheetEndpoint');
+  const saveSheetEndpoint = document.getElementById('saveSheetEndpoint');
+  const refreshSheetExpenses = document.getElementById('refreshSheetExpenses');
+  const toggleSheetGuide = document.getElementById('toggleSheetGuide');
+  const sheetGuide = document.getElementById('sheetGuide');
+  const expenseKey = 'yilan-trip-expenses-v1';
+  const sheetEndpointKey = 'yilan-trip-sheet-endpoint-v1';
+  const sheetJsonpName = 'yilanExpenseJsonp';
+  let expenseCache = [];
+
+  function money(value){
+    return new Intl.NumberFormat('zh-TW',{
+      style:'currency',currency:'TWD',maximumFractionDigits:0
+    }).format(value);
+  }
+
+  function escapeHtml(value){
+    return value.replace(/[&<>"']/g, char => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    })[char]);
+  }
+
+  function readExpenses(){
+    return expenseCache;
+  }
+
+  function saveExpenses(items){
+    expenseCache = items;
+    try{
+      localStorage.setItem(expenseKey, JSON.stringify(items));
+    }catch(err){
+      // The expense tracker remains usable for the current page session.
+    }
+  }
+
+  function readLocalExpenses(){
+    try{
+      return JSON.parse(localStorage.getItem(expenseKey) || '[]');
+    }catch(err){
+      return [];
+    }
+  }
+
+  function getSheetEndpoint(){
+    try{
+      return localStorage.getItem(sheetEndpointKey) || '';
+    }catch(err){
+      return '';
+    }
+  }
+
+  function setSheetEndpoint(value){
+    try{
+      localStorage.setItem(sheetEndpointKey, value);
+    }catch(err){
+      // The sync URL is optional; local mode still works.
+    }
+  }
+
+  function setSyncStatus(text, connected){
+    expenseSyncStatus.textContent = text;
+    expenseSyncLabel.textContent = connected ? 'Google Sheet 同步' : '本機保存';
+  }
+
+  function syncUrl(action, params = {}){
+    const url = new URL(getSheetEndpoint());
+    url.searchParams.set('action', action);
+    Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
+    return url.toString();
+  }
+
+  function loadSheetExpenses(){
+    const endpoint = getSheetEndpoint();
+    sheetEndpoint.value = endpoint;
+    if(!endpoint){
+      saveExpenses(readLocalExpenses());
+      setSyncStatus('尚未連線', false);
+      renderExpenses();
+      return;
+    }
+
+    setSyncStatus('同步中...', true);
+    const oldScript = document.getElementById(sheetJsonpName);
+    if(oldScript) oldScript.remove();
+
+    window.yilanReceiveExpenses = data => {
+      const items = Array.isArray(data.items) ? data.items : [];
+      saveExpenses(items);
+      renderExpenses();
+      setSyncStatus('已連線', true);
+    };
+
+    const script = document.createElement('script');
+    script.id = sheetJsonpName;
+    script.src = syncUrl('list', {callback:'yilanReceiveExpenses', t:Date.now()});
+    script.onerror = () => {
+      saveExpenses(readLocalExpenses());
+      renderExpenses();
+      setSyncStatus('同步失敗，先顯示本機資料', false);
+    };
+    document.body.appendChild(script);
+  }
+
+  function postToSheet(action, item){
+    const endpoint = getSheetEndpoint();
+    if(!endpoint) return Promise.resolve(false);
+
+    const form = new FormData();
+    form.append('action', action);
+    Object.entries(item).forEach(([key, value]) => form.append(key, value));
+
+    return fetch(endpoint, {method:'POST', mode:'no-cors', body:form})
+      .then(() => true)
+      .catch(() => false);
+  }
+
+  function renderExpenses(){
+    const items = readExpenses();
+    const total = items.reduce((sum, item) => sum + item.amount, 0);
+    const byCategory = items.reduce((acc, item) => {
+      acc[item.category] = (acc[item.category] || 0) + item.amount;
+      return acc;
+    }, {});
+
+    expenseTotal.textContent = money(total);
+    expenseAverage.textContent = money(Math.ceil(total / 2));
+    expenseBreakdown.innerHTML = Object.keys(byCategory).length
+      ? Object.entries(byCategory).map(([category, amount]) => `<span class="expense-pill">${category} ${money(amount)}</span>`).join('')
+      : '<span class="expense-pill">還沒有支出</span>';
+
+    expenseList.innerHTML = items.length
+      ? items.map(item => `
+          <div class="expense-item">
+            <div>
+              <h3>${escapeHtml(item.name)}</h3>
+              <small>${item.category} · ${item.payer} · ${item.date}</small>
+            </div>
+            <div class="expense-amount">
+              <b>${money(item.amount)}</b>
+              <button class="expense-delete" type="button" data-id="${item.id}">刪除</button>
+            </div>
+          </div>
+        `).join('')
+      : '<div class="expense-empty">還沒有記帳。第一筆可以從午餐、停車或咖啡開始。</div>';
+  }
+
+  expenseForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    const amount = Math.round(Number(expenseAmount.value));
+    const name = expenseName.value.trim();
+    if(!name || !amount || amount < 1) return;
+
+    const items = readExpenses();
+    const date = new Intl.DateTimeFormat('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());
+    const item = {
+      id: Date.now().toString(36),
+      name,
+      amount,
+      category: expenseCategory.value,
+      payer: expensePayer.value,
+      date
+    };
+    items.unshift(item);
+    saveExpenses(items);
+    expenseForm.reset();
+    expenseCategory.value = '餐飲';
+    expensePayer.value = '豬蹄';
+    renderExpenses();
+    expenseName.focus();
+
+    if(getSheetEndpoint()){
+      setSyncStatus('寫入中...', true);
+      const ok = await postToSheet('add', item);
+      setSyncStatus(ok ? '已寫入 Google Sheet' : '寫入失敗，已先保存在本機', ok);
+      if(ok) setTimeout(loadSheetExpenses, 900);
+    }
+  });
+
+  expenseList.addEventListener('click', async event => {
+    const button = event.target.closest('.expense-delete');
+    if(!button) return;
+    const items = readExpenses().filter(item => item.id !== button.dataset.id);
+    saveExpenses(items);
+    renderExpenses();
+
+    if(getSheetEndpoint()){
+      setSyncStatus('刪除中...', true);
+      const ok = await postToSheet('delete', {id:button.dataset.id});
+      setSyncStatus(ok ? '已更新 Google Sheet' : '刪除同步失敗，本機已刪除', ok);
+      if(ok) setTimeout(loadSheetExpenses, 900);
+    }
+  });
+
+  saveSheetEndpoint.addEventListener('click', () => {
+    const value = sheetEndpoint.value.trim();
+    setSheetEndpoint(value);
+    loadSheetExpenses();
+  });
+
+  refreshSheetExpenses.addEventListener('click', loadSheetExpenses);
+
+  sheetGuide.textContent = `const SPREADSHEET_ID = '1HG_Un20y89T7fKkQtRGlo42YVmSLsgycKZ1zfRqLvWI';
+const SHEET_NAME = '宜蘭旅遊記帳';
+
+function getSheet(){
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  let sheet = ss.getSheetByName(SHEET_NAME);
+  if(!sheet){
+    sheet = ss.insertSheet(SHEET_NAME);
+    sheet.appendRow(['id','date','name','amount','category','payer']);
+  }
+  return sheet;
+}
+
+function doGet(e){
+  const callback = e.parameter.callback || 'callback';
+  const rows = getSheet().getDataRange().getValues().slice(1);
+  const items = rows.filter(row => row[0]).map(row => ({
+    id:String(row[0]),
+    date:String(row[1]),
+    name:String(row[2]),
+    amount:Number(row[3]),
+    category:String(row[4]),
+    payer:String(row[5])
+  })).reverse();
+  return ContentService
+    .createTextOutput(callback + '(' + JSON.stringify({items}) + ')')
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+}
+
+function doPost(e){
+  const sheet = getSheet();
+  const p = e.parameter;
+  if(p.action === 'add'){
+    sheet.appendRow([p.id, p.date, p.name, Number(p.amount), p.category, p.payer]);
+  }
+  if(p.action === 'delete'){
+    const rows = sheet.getDataRange().getValues();
+    for(let i = rows.length - 1; i >= 1; i--){
+      if(String(rows[i][0]) === String(p.id)){
+        sheet.deleteRow(i + 1);
+        break;
+      }
+    }
+  }
+  return ContentService.createTextOutput('ok');
+}`;
+
+  toggleSheetGuide.addEventListener('click', () => {
+    sheetGuide.classList.toggle('show');
+  });
+
+  loadSheetExpenses();
+
   const navItems = document.querySelectorAll('.tabbar a');
-  const sections = ['home','schedule','hotel','checklist'].map(id => document.getElementById(id));
+  const sections = ['home','schedule','hotel','expenses','checklist'].map(id => document.getElementById(id));
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
