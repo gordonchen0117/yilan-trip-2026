@@ -154,6 +154,9 @@
     .quick-card b{display:block;font-size:21px;margin-bottom:4px}
     .quick-card span{font-size:11px;font-weight:800;color:var(--muted)}
 
+    .view-section{display:none!important}
+    .view-section.active{display:block!important}
+    .quick-grid.view-section.active{display:grid!important}
     .section{padding:22px 18px 0;scroll-margin-top:74px}
     .section-head{display:flex;justify-content:space-between;align-items:end;margin:0 2px 13px}
     .section-head h2{margin:0;font-size:27px;letter-spacing:-.025em}
@@ -334,7 +337,7 @@
     <div class="header-chip">2 天 1 夜</div>
   </header>
 
-  <section class="hero" id="home">
+  <section class="hero view-section active" id="home" data-view="home">
     <div class="hero-card">
       <div class="hero-label">YILAN BIRTHDAY ESCAPE</div>
       <h1>把日子過得<br><span>慢一點</span></h1>
@@ -348,7 +351,7 @@
   </section>
 
 
-  <section class="weather-card" id="weather">
+  <section class="weather-card view-section active" id="weather" data-view="home">
     <div class="weather-head">
       <div><h2>宜蘭即時天氣</h2><small id="weatherUpdated">正在取得最新資料</small></div>
       <button class="weather-refresh" id="weatherRefresh">重新整理</button>
@@ -356,14 +359,14 @@
     <div id="weatherContent" class="weather-loading">正在載入溫度與降雨機率…</div>
   </section>
 
-  <section class="quick-grid">
+  <section class="quick-grid view-section active" data-view="home">
     <div class="quick-card"><b>🚗</b><span>三峽自駕</span></div>
     <div class="quick-card"><b>🏨</b><span>長榮鳳凰</span></div>
     <div class="quick-card"><b>🍜</b><span>大成羊排麵</span></div>
     <div class="quick-card"><b>🎂</b><span>生日慶生</span></div>
   </section>
 
-  <section class="section" id="schedule">
+  <section class="section view-section" id="schedule" data-view="schedule">
     <div class="section-head"><h2>行程</h2><span>左右切換日期</span></div>
     <div class="segmented">
       <button class="day-tab active" data-target="day1">DAY 1 · 8/2 日</button>
@@ -515,7 +518,7 @@
     </div>
   </section>
 
-  <section class="section" id="hotel">
+  <section class="section view-section" id="hotel" data-view="hotel">
     <div class="section-head"><h2>飯店</h2><span>入住後的主場</span></div>
     <div class="hotel-card">
       <small>EVERGREEN RESORT HOTEL · JIAOSI</small>
@@ -541,7 +544,7 @@
     </div>
   </section>
 
-  <section class="section" id="backup">
+  <section class="section view-section" id="backup" data-view="schedule">
     <div class="section-head"><h2>雨天備案</h2><span>行程自動降速</span></div>
     <div class="backup-card">
       <h3>下雨就把旅行變得更慢</h3>
@@ -550,7 +553,7 @@
     </div>
   </section>
 
-  <section class="section" id="expenses">
+  <section class="section view-section" id="expenses" data-view="expenses">
     <div class="section-head"><h2>記帳</h2><span id="expenseSyncLabel">本機保存</span></div>
     <div class="expense-card">
       <div class="expense-sync">
@@ -610,7 +613,7 @@
     </div>
   </section>
 
-  <section class="section" id="checklist">
+  <section class="section view-section" id="checklist" data-view="checklist">
     <div class="section-head"><h2>出發前</h2><span>勾選會自動保存</span></div>
     <div class="check-card">
       <h3>準備清單</h3>
@@ -632,7 +635,7 @@
     </div>
   </section>
 
-  <p class="footer">營業時間、餐期、設施開放與步道路況，請以店家及官方最新公告為準。</p>
+  <p class="footer view-section active" data-view="home">營業時間、餐期、設施開放與步道路況，請以店家及官方最新公告為準。</p>
 </div>
 
 <nav class="tabbar">
@@ -947,17 +950,29 @@ function doPost(e){
   loadSheetExpenses();
 
   const navItems = document.querySelectorAll('.tabbar a');
-  const sections = ['home','schedule','hotel','expenses','checklist'].map(id => document.getElementById(id));
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        navItems.forEach(a => a.classList.remove('active'));
-        const match = [...navItems].find(a => a.getAttribute('href') === '#' + entry.target.id);
-        if(match) match.classList.add('active');
-      }
+  const viewSections = document.querySelectorAll('.view-section');
+  const viewIds = ['home','schedule','hotel','expenses','checklist'];
+
+  function showView(viewId, updateHash = true){
+    const target = viewIds.includes(viewId) ? viewId : 'home';
+    viewSections.forEach(section => {
+      section.classList.toggle('active', section.dataset.view === target);
     });
-  }, {rootMargin:'-40% 0px -50% 0px', threshold:0});
-  sections.forEach(section => observer.observe(section));
+    navItems.forEach(item => {
+      item.classList.toggle('active', item.getAttribute('href') === '#' + target);
+    });
+    if(updateHash) history.replaceState(null, '', '#' + target);
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  navItems.forEach(item => {
+    item.addEventListener('click', event => {
+      event.preventDefault();
+      showView(item.getAttribute('href').slice(1));
+    });
+  });
+
+  showView(location.hash.replace('#','') || 'home', false);
 
   const weatherCodeMap = {
     0:['☀️','晴朗'],1:['🌤️','大致晴朗'],2:['⛅','局部多雲'],3:['☁️','陰天'],
